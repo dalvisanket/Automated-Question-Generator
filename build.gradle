@@ -1,0 +1,59 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.10'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.questions.generator'
+
+sourceCompatibility = '1.8'
+
+targetCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+configurations {
+	all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.codehaus.janino:janino:3.0.8'
+	implementation 'org.codehaus.janino:commons-compiler:3.0.8'
+
+	implementation 'com.opencsv:opencsv:5.7.1'
+
+	implementation 'org.apache.spark:spark-core_2.13:3.3.2'
+
+	compileOnly 'org.apache.spark:spark-streaming_2.13:3.3.2'
+
+	implementation 'org.apache.spark:spark-streaming_2.13:3.3.2'
+
+
+	compileOnly 'org.apache.spark:spark-sql_2.13:3.3.2'
+
+	implementation 'org.apache.spark:spark-sql_2.13:3.3.2'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+bootJar{
+	enabled = true
+}
+jar{
+	enabled = false
+}
+
+springBoot{
+	mainClass = "com.questions.generator.Data101Application"
+}
