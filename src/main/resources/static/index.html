@@ -5,7 +5,7 @@
 </head>
     <body>
         <form onsubmit="return handleFormSubmit(event)">
-            <label for="numberInput">Enter a number:</label>
+            <label for="numberInput">Number of Questions:</label>
             <input type="number" id="numberInput" name="numberInput" min="0" max="100">
             <button type="submit">Submit</button>
         </form>
@@ -17,7 +17,10 @@
                 const numberInput = document.getElementById('numberInput').value;
 
                 if (numberInput >= 0 && numberInput <= 1000) {
-                    window.location.href = `./get-questions/${numberInput}`;
+
+                    const currentUrl = window.location.href;
+                    const newUrl = `${currentUrl}get-questions/${numberInput}`;
+                    window.location.href = newUrl;
                 }
 
                 return false;

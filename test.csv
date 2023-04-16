@@ -1,10 +1,5 @@
-What is the MAX id where name = "Flushing Spacious Room w/ 2 Queen Beds" 
-What is the MIN price where neighbourhood_group = "Murray Hill" 
-What is the MAX id where neighbourhood = "Fort Greene" and room_type = "16" 
-What is the MIN floor where name = "Great House for Large Groups; Close to Manhattan" and host_name = "Yael & Graham" 
-What is the MAX id where name = "perfectly located right next to Main st Flushing" and host_name = "Aiden & Cassy" 
-What is the MIN floor where name = "Apartment share close to train station" and room_type = "Bushwick" 
-What is the MIN floor where host_name = "Jessi" 
 What is the MIN price from the whole dataset
-What is the MIN price where room_type = "Harlem" 
-What is the MIN floor where neighbourhood_group = "Clinton Hill" 
+What is the MAX id where name = "Cozy room near la Guardia airport." and neighbourhood_group = "Evelyn" 
+What is the MAX id where name = "*NEW* Bright, Spacious & Quiet Bedroom by Times SQ" and neighbourhood_group = "Briarwood" 
+What is the MIN floor where neighbourhood_group = "Prospect-Lefferts Gardens" 
+What is the MIN price from the whole dataset
