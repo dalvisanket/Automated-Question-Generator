@@ -12,7 +12,10 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.DataTypes;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import java.io.PrintWriter;
@@ -63,7 +67,7 @@ public class QuestionController {
     }
 
     @GetMapping("/get-questions/{count}")
-    public ResponseEntity<List<String>> getQuestions( @PathVariable(name = "count") int count) throws AnalysisException, FileNotFoundException {
+    public ResponseEntity<InputStreamResource> getQuestions( @PathVariable(name = "count") int count) throws AnalysisException, FileNotFoundException {
 
         dataset.printSchema();
 
@@ -126,14 +130,23 @@ public class QuestionController {
             }
         }
 
-        File csvOutputFile = new File("test.csv");
+        File csvOutputFile = new File("questions.csv");
         try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
             questions.stream()
                     .forEach(pw::println);
         }
 
+        HttpHeaders header = new HttpHeaders();
+        header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=questions.csv");
 
-        return new ResponseEntity<List<String>>(questions, HttpStatus.OK);
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(csvOutputFile));
+
+
+        return ResponseEntity.ok()
+                .headers(header)
+                .contentLength(csvOutputFile.length())
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(resource);
 
 
     }
