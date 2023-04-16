@@ -29,6 +29,12 @@ jobs:
         with:
           name: java-app
           path: '${{ github.workspace }}/build/libs/*.jar'
+          
+      - name: Upload csv for deployment job
+        uses: actions/upload-artifact@v2
+        with:
+          name: dataset
+          path: '${{ github.workspace }}/build/resources/main/*.csv'
 
   deploy:
     runs-on: windows-latest
