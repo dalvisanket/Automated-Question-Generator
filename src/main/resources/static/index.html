@@ -12,15 +12,15 @@
 
         <script>
             function handleFormSubmit(event) {
-                event.preventDefault(); // prevent the form from submitting normally
+                event.preventDefault();
 
                 const numberInput = document.getElementById('numberInput').value;
 
                 if (numberInput >= 0 && numberInput <= 1000) {
-                    window.location.href = `http://localhost:8080/get-questions/${numberInput}`;
+                    window.location.href = `./get-questions/${numberInput}`;
                 }
 
-                return false; // prevent the form from submitting normally
+                return false;
             }
         </script>
     </body>
